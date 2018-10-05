@@ -1,4 +1,6 @@
 build
-lib/*
-bin/*
+lib
+bin
+include
 *.swp
+.tags
