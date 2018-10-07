@@ -141,7 +141,7 @@ $(TARGET): $(OBJECTS)
 # 3rd party dependencies
 #
 BUILDDIR_LIBCARES:=$(shell realpath -m $(BUILDDIR)/libcares)
-VERSION_CARES:=1.7.5
+VERSION_CARES:=1.14.0
 MAKEDIR_LIBCARES=$(BUILDDIR_LIBCARES)/c-ares-$(VERSION_CARES)
 
 $(LIBCARES): $(EXTDIR)/c-ares-$(VERSION_CARES).tar.gz 
