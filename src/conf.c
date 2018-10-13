@@ -108,7 +108,7 @@ int parse_command_line (int argc, char *argv [])
           break;
 
         case 'h':
-          print_help ();
+          print_help(stdout);
           exit (0);
 
         case 'f': /* Configuration file */
@@ -200,7 +200,7 @@ int parse_command_line (int argc, char *argv [])
 
         default: 
             fprintf (stderr, "%s error: not supported option\n", __func__);
-          print_help ();
+          print_help(stderr);
           return -1;
         }
     }
@@ -211,40 +211,40 @@ int parse_command_line (int argc, char *argv [])
         while (optind < argc)
             fprintf (stderr, "%s ", argv[optind++]);
         fprintf (stderr, "\n");
-        print_help ();
+        print_help(stderr);
       return -1;
     }
 
   return 0;
 }
 
-void print_help ()
+void print_help(FILE *ofs)
 {
-  fprintf (stderr, "Note, to run your load, create your batch configuration file.\n\n");
-  fprintf (stderr, "usage: run as a root:\n");
-  fprintf (stderr, "./curl-loader -f <configuration file name> with [other options below]:\n");
-  fprintf (stderr, " -c[onnection establishment timeout, seconds]\n");
-  fprintf (stderr, " -d[etailed logging; outputs to logfile headers and bodies of requests/responses. Good for text pages/files]\n");
-  fprintf (stderr, " -e[rror drop client (smooth mode). Client on error doesn't attempt next cycle]\n");
-  fprintf (stderr, " -i[ntermediate (snapshot) statistics time interval (default 3 sec)]\n");
-  fprintf (stderr, " -l[ogfile max size in MB (default 1024). On the size reached, file pointer rewinded]\n");
-  fprintf (stderr, " -m[ode of loading, 0 - hyper  (default), 1 - smooth]\n");
-  fprintf (stderr, " -r[euse onnections disabled. Close connections and re-open them. Try with and without]\n");
-  fprintf (stderr, " -t[hreads number to run batch clients as sub-batches in several threads. Works to utilize SMP/m-core HW]\n");
-  fprintf (stderr, " -v[erbose output to the logfiles; includes info about headers sent/received]\n");
-  fprintf (stderr, " -u[rl logging - logs url names to logfile, when -v verbose option is used]\n");
-  fprintf (stderr, " -w[arnings skip]\n");
-  fprintf (stderr, " -x[set|unset proxy] \"<proxy:port>\"\n");
-  fprintf (stderr, "\n");
+  fprintf (ofs, "Note, to run your load, create your batch configuration file.\n\n");
+  fprintf (ofs, "usage: run as a root:\n");
+  fprintf (ofs, "./curl-loader -f <configuration file name> with [other options below]:\n");
+  fprintf (ofs, " -c[onnection establishment timeout, seconds]\n");
+  fprintf (ofs, " -d[etailed logging; outputs to logfile headers and bodies of requests/responses. Good for text pages/files]\n");
+  fprintf (ofs, " -e[rror drop client (smooth mode). Client on error doesn't attempt next cycle]\n");
+  fprintf (ofs, " -i[ntermediate (snapshot) statistics time interval (default 3 sec)]\n");
+  fprintf (ofs, " -l[ogfile max size in MB (default 1024). On the size reached, file pointer rewinded]\n");
+  fprintf (ofs, " -m[ode of loading, 0 - hyper  (default), 1 - smooth]\n");
+  fprintf (ofs, " -r[euse onnections disabled. Close connections and re-open them. Try with and without]\n");
+  fprintf (ofs, " -t[hreads number to run batch clients as sub-batches in several threads. Works to utilize SMP/m-core HW]\n");
+  fprintf (ofs, " -v[erbose output to the logfiles; includes info about headers sent/received]\n");
+  fprintf (ofs, " -u[rl logging - logs url names to logfile, when -v verbose option is used]\n");
+  fprintf (ofs, " -w[arnings skip]\n");
+  fprintf (ofs, " -x[set|unset proxy] \"<proxy:port>\"\n");
+  fprintf (ofs, "\n");
 
-  fprintf (stderr, "For more examples of configuration files please, look at \"conf-examples\" directory.\n");
-  fprintf (stderr, "\n");
-  fprintf (stderr, "Running thousands and more clients, please do not forget to consider the options:\n");
-  fprintf (stderr, "- to increase limit of open descriptors in shell by running e.g.    ulimit -n 19999:\n");
-  fprintf (stderr, "- to increase total limit of  open descriptors in systeme somewhere in /proc\n");
-  fprintf (stderr, "- to consider reusing sockets in time-wait state: by     echo 1 > \n");
-  fprintf (stderr, " /proc/sys/net/ipv4/tcp_tw_recycle\n");
-  fprintf (stderr, "- and/or    echo 1 > /proc/sys/net/ipv4/tcp_tw_reuse\n");
-  fprintf (stderr, "\n");
-  fprintf (stderr, "\n");
+  fprintf (ofs, "For more examples of configuration files please, look at \"conf-examples\" directory.\n");
+  fprintf (ofs, "\n");
+  fprintf (ofs, "Running thousands and more clients, please do not forget to consider the options:\n");
+  fprintf (ofs, "- to increase limit of open descriptors in shell by running e.g.    ulimit -n 19999:\n");
+  fprintf (ofs, "- to increase total limit of  open descriptors in systeme somewhere in /proc\n");
+  fprintf (ofs, "- to consider reusing sockets in time-wait state: by     echo 1 > \n");
+  fprintf (ofs, " /proc/sys/net/ipv4/tcp_tw_recycle\n");
+  fprintf (ofs, "- and/or    echo 1 > /proc/sys/net/ipv4/tcp_tw_reuse\n");
+  fprintf (ofs, "\n");
+  fprintf (ofs, "\n");
 }

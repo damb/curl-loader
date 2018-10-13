@@ -24,6 +24,7 @@
 #define CONF_H
 
 #include <stddef.h>
+#include <stdio.h>
 #include <linux/limits.h> /* NAME_MAX, PATH_MAX */
 
 
@@ -156,6 +157,6 @@ int init_operational_statistics(struct batch_context* bctx);
 /*
   Prints out usage of the program.
 */
-void print_help ();
+void print_help (FILE *ofs);
 
 #endif /* CONF_H */
