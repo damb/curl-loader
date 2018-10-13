@@ -2,5 +2,6 @@ build
 lib
 bin
 include
+*.o
 *.swp
 .tags
